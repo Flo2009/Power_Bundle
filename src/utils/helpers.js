@@ -7,16 +7,9 @@ module.exports = {
     // format large numbers with commas
     return parseInt(amount).toLocaleString();
   },
-  get_emoji: () => {
-    const randomNum = Math.random();
+  get_tracking: () => {
+    const randomNum = Math.floor(random()*(9999999999 - 1000000000 + 1)) + 1000000000;
 
-    // Return a random emoji
-    if (randomNum > 0.7) {
-      return `<span for="img" aria-label="lightbulb">💡</span>`;
-    } else if (randomNum > 0.4) {
-      return `<span for="img" aria-label="laptop">💻</span>`;
-    } else {
-      return `<span for="img" aria-label="gear">⚙️</span>`;
-    }
+    return randomNum;
   },
 };
