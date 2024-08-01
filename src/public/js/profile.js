@@ -1,8 +1,8 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
+  const name = document.querySelector('#product-name').value.trim();
+  const needed_funding = document.querySelector('#product-funding').value.trim();
   const description = document.querySelector('#project-desc').value.trim();
 
   if (name && needed_funding && description) {
