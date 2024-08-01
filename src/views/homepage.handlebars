@@ -1,19 +1,31 @@
-<!-- Loop over each object in the projects array -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Bundle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-light py-3">
+        <nav class="container d-flex flex-wrap justify-content-between">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Mix Bundles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Energy Drinks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Healthy Snacks</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="">Login/Create account</a>
+                <a class="nav-link" href="">Cart</a>
   </div>
   <div class="col-md-7">
     <p>
