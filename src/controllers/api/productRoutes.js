@@ -17,7 +17,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const projductData = await Product.destroy({
+    const productData = await Product.destroy({
       where: {
         id: req.params.id,
         customer_id: req.session.customer_id,
@@ -25,7 +25,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!productData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+      res.status(404).json({ message: 'No product found!' });
       return;
     }
 
