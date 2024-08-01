@@ -1,38 +1,59 @@
-
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Bundle</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerBundle - Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <header class="bg-light py-3">
-        <nav class="container d-flex flex-wrap justify-content-between">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Mix Bundles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Energy Drinks</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Healthy Snacks</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-                <a class="nav-link" href="">Login/Create account</a>
-                <a class="nav-link" href="">Cart</a>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
-  </div>
-</div>
-{{/each}}
+  <header class="bg-light py-3">
+    <nav class="container d-flex flex-wrap justify-content-between">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mix-bundles">Mix Bundles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/energy-drinks">Energy Drinks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/healthy-snacks">Healthy Snacks</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <a class="nav-link" href="/login">Login/Create account</a>
+        <a class="nav-link" href="/cart">Cart</a>
+      </div>
+    </nav>
+  </header>
+  
+  <main class="container mt-5">
+    <h1>Welcome to PowerBundle</h1>
+    <p>PowerBundle is an e-commerce platform dedicated to providing health-conscious consumers with affordable, high-quality bundles of healthy bars and drinks. The platform aims to simplify the process of maintaining a nutritious diet by offering curated selections of products at discounted prices.</p>
+    <div class="row">
+      {{#each products}}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="{{this.imageUrl}}" class="card-img-top" alt="{{this.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{this.name}}</h5>
+              <p class="card-text">{{this.description}}</p>
+              <p class="card-text">Price: ${{this.price}}</p>
+              <button class="btn btn-primary add-to-cart" data-id="{{this.id}}">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </main>
 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>

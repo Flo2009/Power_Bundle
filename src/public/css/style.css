@@ -22,3 +22,61 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+header {
+  background-color: #2d6a4f;
+  color: #fff;
+}
+
+header .nav-link {
+  color: #fff !important;
+}
+
+header .nav-link:hover {
+  color: #d8f3dc !important;
+}
+
+main {
+  padding: 20px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-title {
+  color: #1b4332;
+}
+
+.btn-primary {
+  background-color: #2d6a4f;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1b4332;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.dollar-amount {
+  font-weight: bold;
+  color: #1b4332;
+}
+
+
