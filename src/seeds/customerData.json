@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Angus Young",
+    "name": "Malcom Young",
     "email": "angus@gmail.com",
     "password": "hashedpassword1",
     "address": "123 Main St, Anytown, USA"
