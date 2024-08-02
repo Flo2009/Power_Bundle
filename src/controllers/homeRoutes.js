@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const projects = productData.map((project) => Product.get({ plain: true }));
+    const products = productData.map((product) => Product.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/product/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
       include: [
@@ -40,7 +40,7 @@ router.get('/project/:id', async (req, res) => {
 
     const product = productData.get({ plain: true });
 
-    res.render('project', {
+    res.render('product', {
       ...product,
       logged_in: req.session.logged_in
     });
@@ -58,7 +58,7 @@ router.get('/cart', withAuth, async (req, res) => {
       include: [{ model: Product }],
     });
 
-    const user = CustomerData.get({ plain: true });
+    const customer = CustomerData.get({ plain: true });
 
     res.render('cart', {
       ...customer,
