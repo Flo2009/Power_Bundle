@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Customer } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const customerData = await Customer.create(req.body);
 
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
     const customerData = await Customer.findOne({ where: { email: req.body.email } });
 
