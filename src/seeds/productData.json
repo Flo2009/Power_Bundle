@@ -5,7 +5,7 @@
     "description": "High-quality whey protein.",
     "price": 29.99,
     "stock": 100,
-    "imageUrl": "https://example.com/whey-protein.jpg"
+    "imageUrl": "images/whey.png"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "description": "Branched-Chain Amino Acids",
     "price": 19.99,
     "stock": 150,
-    "imageUrl": "https://example.com/bcaa.jpg"
+    "imageUrl": "images/bcaa.png"
   },
   {
     "id": 3,
@@ -21,6 +21,6 @@
     "description": "100 Calories Gel",
     "price": 1.99,
     "stock": 1000,
-    "imageUrl": "https://example.com/gel.jpg"
+    "imageUrl": "images/gel.png"
   }
 ]

@@ -1,20 +1,21 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const User = require('./Customer');
+const Customer = require('./Customer');
 
 class Order extends Model {}
 
 Order.init({
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+    type: DataTypes.INTEGER,
+    // defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+    autoIncrement: true,
   },
-  userId: {
-    type: DataTypes.UUID,
+  customerId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: User,
+      model: Customer,
       key: 'id'
     }
   },
@@ -41,10 +42,16 @@ Order.init({
   }
 });
 
-Order.belongsTo(User, { foreignKey: 'userId' });
+Order.belongsTo(Customer, { foreignKey: 'customerId' });
 
 function generateTrackingNumber() {
     return 'TN' + Math.random().toString(36).substr(2, 9).toUpperCase();
   }
 
 module.exports = Order;
+
+
+// Customer.bulkCreate(customerData, {
+//   individualHooks: true,
+//   returning: true,
+// });

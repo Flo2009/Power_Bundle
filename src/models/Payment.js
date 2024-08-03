@@ -6,12 +6,13 @@ class Payment extends Model {}
 
 Payment.init({
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+    type: DataTypes.INTEGER,
+    // defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+    autoIncrement: true,
   },
   orderId: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
       model: Order,

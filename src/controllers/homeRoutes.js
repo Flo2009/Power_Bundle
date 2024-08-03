@@ -7,15 +7,15 @@ router.get('/', async (req, res) => {
     // Get all projects and JOIN with user data
     const productData = await Product.findAll({
       include: [
-        {
-          model: Customer,
-          attributes: ['name'],
-        },
+        // {
+        //   model: Customer,
+        //   // attributes: ['name'],
+        // },
       ],
     });
 
     // Serialize data so the template can read it
-    const products = productData.map((product) => Product.get({ plain: true }));
+    const products = productData.map((product) => product.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
