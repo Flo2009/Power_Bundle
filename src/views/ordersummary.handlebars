@@ -4,10 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PowerBundle - Checkout</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css"> <!-- Local Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Custom CSS -->
+  <style>
+    /* Custom styles for the green theme */
+    body {
+      background-color: #d4edda; /* Light green background */
+    }
+    .text-green {
+      color: #155724; /* Dark green text */
+    }
+    .btn-green {
+      background-color: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+    .btn-green:hover {
+      background-color: #218838;
+      color: white;
+      border-color: #1e7e34;
+    }
+    .btn-green:focus, .btn-green:active {
+      background-color: #1e7e34;
+      color: white;
+      border-color: #1c7430;
+    }
+    .form-container {
+      background-color: #a5d6a7; /* Light green container */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #81c784; /* Green border for input fields */
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .form-group label {
+      color: #2e7d32; /* Medium green for labels */
+    }
+  </style>
 </head>
-<body>
+<body class="text-green">
   <header class="bg-light py-3">
     <nav class="container d-flex flex-wrap justify-content-between">
       <ul class="nav">
@@ -32,63 +74,63 @@
   </header>
   
   <main class="container mt-5">
-    <h1>Checkout</h1>
+    <h1 class="mb-4 text-green">Checkout</h1>
     <form action="/checkout" method="POST">
       <div class="row">
-        <div class="col-md-6">
-          <h3>Billing Information</h3>
+        <div class="col-md-6 form-container">
+          <h3 class="text-green">Billing Information</h3>
           <div class="form-group">
             <label for="fullName">Full Name</label>
-            <input type="text" class="form-control" id="fullName" name="fullName" required>
+            <input type="text" class="form-input form-control" id="fullName" name="fullName" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-input form-control" id="email" name="email" required>
           </div>
           <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address" required>
+            <input type="text" class="form-input form-control" id="address" name="address" required>
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city" required>
+            <input type="text" class="form-input form-control" id="city" name="city" required>
           </div>
           <div class="form-group">
             <label for="state">State</label>
-            <input type="text" class="form-control" id="state" name="state" required>
+            <input type="text" class="form-input form-control" id="state" name="state" required>
           </div>
           <div class="form-group">
             <label for="zip">Zip Code</label>
-            <input type="text" class="form-control" id="zip" name="zip" required>
+            <input type="text" class="form-input form-control" id="zip" name="zip" required>
           </div>
         </div>
-        <div class="col-md-6">
-          <h3>Payment Information</h3>
+        <div class="col-md-6 form-container">
+          <h3 class="text-green">Payment Information</h3>
           <div class="form-group">
             <label for="cardName">Name on Card</label>
-            <input type="text" class="form-control" id="cardName" name="cardName" required>
+            <input type="text" class="form-input form-control" id="cardName" name="cardName" required>
           </div>
           <div class="form-group">
             <label for="cardNumber">Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+            <input type="text" class="form-input form-control" id="cardNumber" name="cardNumber" required>
           </div>
           <div class="form-group">
             <label for="expiration">Expiration Date</label>
-            <input type="text" class="form-control" id="expiration" name="expiration" placeholder="MM/YY" required>
+            <input type="text" class="form-input form-control" id="expiration" name="expiration" placeholder="MM/YY" required>
           </div>
           <div class="form-group">
             <label for="cvv">CVV</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" required>
+            <input type="text" class="form-input form-control" id="cvv" name="cvv" required>
           </div>
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-md-12">
-          <h3>Order Summary</h3>
+        <div class="col-md-12 form-container">
+          <h3 class="text-green">Order Summary</h3>
           <ul class="list-group">
             {{#each order.products}}
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{this.name}}
+                <span>{{this.name}}</span>
                 <span>${{this.price}}</span>
               </li>
             {{/each}}
@@ -99,12 +141,11 @@
           </ul>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary mt-4">Place Order</button>
+      <button type="submit" class="btn btn-green mt-4">Place Order</button>
     </form>
   </main>
   
-  
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/js/jquery-3.5.1.slim.min.js"></script> <!-- Local jQuery -->
+  <script src="/js/bootstrap.min.js"></script> <!-- Local Bootstrap JS -->
 </body>
 </html>
