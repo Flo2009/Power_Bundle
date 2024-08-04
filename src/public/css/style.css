@@ -1,3 +1,50 @@
+body {
+  background-color: #d4edda; /* Light green background */
+}
+
+.text-green {
+  color: #155724; /* Dark green text */
+}
+
+.btn-green {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.btn-green:hover {
+  background-color: #218838;
+  color: white;
+  border-color: #1e7e34;
+}
+
+.btn-green:focus, .btn-green:active {
+  background-color: #1e7e34;
+  color: white;
+  border-color: #1c7430;
+}
+
+.form-container {
+  background-color: #a5d6a7; /* Light green container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #81c784; /* Green border for input fields */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  color: #2e7d32; /* Medium green for labels */
+}
+
 header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
@@ -22,6 +69,7 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f7f6;
@@ -29,16 +77,16 @@ body {
 }
 
 header {
-  background-color: #2d6a4f;
+  background-color: #81c784; /* Light green background for the header */
   color: #fff;
 }
 
 header .nav-link {
-  color: #fff !important;
+  color: #1b4332 !important; /* Dark green color for nav links */
 }
 
 header .nav-link:hover {
-  color: #d8f3dc !important;
+  color: #1b4332 !important; /* Dark green color on hover */
 }
 
 main {
@@ -78,5 +126,4 @@ main {
   font-weight: bold;
   color: #1b4332;
 }
-
-
+Updated HTML:
