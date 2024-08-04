@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,7 +30,6 @@
       </div>
     </nav>
   </header>
-  
   <main class="container mt-5">
     <h1>Shopping Cart</h1>
     {{#if order.products.length}}
@@ -40,23 +39,82 @@
             <div>
               <h5>{{this.name}}</h5>
               <p>{{this.description}}</p>
-              <p>Price: ${{this.price}}</p>
-              <p>Quantity: {{this.order_product.quantity}}</p>
+              <p>Price: $<span class="price">{{this.price}}</span></p>
+              <p>
+                Quantity:
+                <button class="btn btn-secondary btn-sm decrease-quantity" data-id="{{this.id}}">-</button>
+                <span class="quantity">{{this.order_product.quantity}}</span>
+                <button class="btn btn-secondary btn-sm increase-quantity" data-id="{{this.id}}">+</button>
+              </p>
+              <p>Total: $<span class="item-total">{{this.price * this.order_product.quantity}}</span></p>
             </div>
             <button class="btn btn-danger remove-from-cart" data-id="{{this.id}}">Remove</button>
           </li>
         {{/each}}
       </ul>
       <div class="mt-3">
-        <h3>Total: ${{order.total_amount}}</h3>
+        <h3>Total: $<span id="cart-total">{{order.total_amount}}</span></h3>
         <button class="btn btn-primary" id="checkout">Proceed to Checkout</button>
       </div>
     {{else}}
       <p>Your cart is empty.</p>
     {{/if}}
   </main>
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
+    $(document).ready(function() {
+      function updateCartTotal() {
+        var total = 0;
+        $('.item-total').each(function() {
+          total += parseFloat($(this).text());
+        });
+        $('#cart-total').text(total.toFixed(2));
+      }
+      $('#checkout').on('click', function() {
+        window.location.href = '/checkout';
+      });
+      $('.remove-from-cart').on('click', function() {
+        var productId = $(this).data('id');
+        // Add your remove from cart functionality here
+        // Example: removeProductFromCart(productId);
+        console.log('Remove product with ID:', productId);
+        $(this).closest('li').remove();
+        updateCartTotal();
+      });
+      $('.increase-quantity').on('click', function() {
+        var productId = $(this).data('id');
+        var $quantitySpan = $(this).siblings('.quantity');
+        var $itemTotalSpan = $(this).closest('div').find('.item-total');
+        var $priceSpan = $(this).closest('div').find('.price');
+        var currentQuantity = parseInt($quantitySpan.text());
+        var price = parseFloat($priceSpan.text());
+        // Add your increase quantity functionality here
+        // Example: updateProductQuantity(productId, currentQuantity + 1);
+        $quantitySpan.text(currentQuantity + 1);
+        $itemTotalSpan.text((price * (currentQuantity + 1)).toFixed(2));
+        console.log('Increase quantity for product with ID:', productId);
+        updateCartTotal();
+      });
+      $('.decrease-quantity').on('click', function() {
+        var productId = $(this).data('id');
+        var $quantitySpan = $(this).siblings('.quantity');
+        var $itemTotalSpan = $(this).closest('div').find('.item-total');
+        var $priceSpan = $(this).closest('div').find('.price');
+        var currentQuantity = parseInt($quantitySpan.text());
+        var price = parseFloat($priceSpan.text());
+        if (currentQuantity > 1) {
+          // Add your decrease quantity functionality here
+          // Example: updateProductQuantity(productId, currentQuantity - 1);
+          $quantitySpan.text(currentQuantity - 1);
+          $itemTotalSpan.text((price * (currentQuantity - 1)).toFixed(2));
+          console.log('Decrease quantity for product with ID:', productId);
+          updateCartTotal();
+        }
+      });
+      updateCartTotal();
+    });
+  </script>
+</body>
+</html>
