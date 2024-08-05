@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with customer data
+    // Get all projects and JOIN with user data
     const productData = await Product.findAll({
       include: [
         // {
@@ -20,7 +20,8 @@ router.get('/', async (req, res) => {
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       products, 
-      logged_in: req.session.logged_in 
+      logged_in: req.session.logged_in, 
+      customer_id: req.session.customer_id
     });
   } catch (err) {
     res.status(500).json(err);
@@ -52,7 +53,7 @@ router.get('/product/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/cart', withAuth, async (req, res) => {
   try {
-    // Find the logged in customer based on the session ID
+    // Find the logged in user based on the session ID
     const customerData = await Customer.findByPk(req.session.customer_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Product }],
@@ -70,9 +71,10 @@ router.get('/cart', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // If the customer is already logged in, redirect the request to another route
+  // If the user is already logged in, redirect the request to another route
+  console.log("hello");
   if (req.session.logged_in) {
-    res.redirect('/cart');
+    res.redirect('/');
     return;
   }
 

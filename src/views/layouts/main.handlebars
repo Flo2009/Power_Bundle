@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PowerBundle - {{title}}</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/src/public/css/style.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -27,8 +27,24 @@
         </li>
       </ul>
       <div class="d-flex">
-        <a class="nav-link" href="/login">Login/Create account</a>
-        <a class="nav-link" href="/cart">Cart</a>
+         {{#if logged_in}}
+         <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/cart">Cart</a>
+              {{!-- <p>{{customer_id}}</p> --}}
+            </li>
+            <li>
+               <button class="nav-link logout"  id="logout">logout</button>
+            </li>
+         </ul>
+        {{else}}
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login/Create account </a>
+            </li>
+         </ul>  
+        {{/if}}
+        
       </div>
     </nav>
   </header>
@@ -41,11 +57,16 @@
     </main>
     {{!-- {{> footer }} --}}
   </div>
-
-  <script src="/js/jquery-3.5.1.slim.min.js"></script>
-  <script src="/js/popper.min.js"></script>
+ 
+  {{!-- <script src="/js/jquery-3.5.1.slim.min.js"></script> --}}
+  {{!-- <script src="/js/popper.min.js"></script> --}}
   <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/custom.js"></script>
+  {{!-- <script src="/js/custom.js"></script> --}}
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+ 
 </body>
 
 </html>

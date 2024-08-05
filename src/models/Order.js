@@ -25,7 +25,8 @@ Order.init({
   },
   status: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Pending'
   },
   trackingNumber: {
     type: DataTypes.STRING,
@@ -51,7 +52,3 @@ function generateTrackingNumber() {
 module.exports = Order;
 
 
-// Customer.bulkCreate(customerData, {
-//   individualHooks: true,
-//   returning: true,
-// });

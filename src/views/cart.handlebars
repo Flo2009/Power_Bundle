@@ -1,41 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PowerBundle - Cart</title>
-  <link rel="stylesheet" href="/src/public/css/bootstrap.min.css"> 
-  <link rel="stylesheet" href="/src/public/css/style.css"> 
- 
-</head>
-<body class="text-green">
-  <header class="bg-light py-3">
-    <nav class="container d-flex flex-wrap justify-content-between">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mix-bundles">Mix Bundles</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/energy-drinks">Energy Drinks</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/healthy-snacks">Healthy Snacks</a>
-        </li>
-      </ul>
-      <div class="d-flex">
-        <a class="nav-link" href="/login">Login/Create account</a>
-        <a class="nav-link" href="/cart">Cart</a>
-      </div>
-    </nav>
-  </header>
-  <main class="container mt-5">
+
+  {{!-- <style>
+    /* New custom styles for the green theme */
+    body {
+      background-color: #d4edda; /* Light green background */
+    }
+    .text-green {
+      color: #155724; /* Dark green text */
+    }
+    .btn-green {
+      background-color: #28a745;
+      color: white;
+      border-color: #28a745;
+    }
+    .btn-green:hover {
+      background-color: #218838;
+      color: white;
+      border-color: #1e7e34;
+    }
+    .btn-green:focus, .btn-green:active {
+      background-color: #1e7e34;
+      color: white;
+      border-color: #1c7430;
+    }
+  </style> --}}
+
+
+  
+  <main class="text-green container mt-5">
     <h1 class="mb-4">Shopping Cart</h1>
-    {{#if order.products.length}}
+    {{#if product.length}}
       <ul class="list-group mb-4">
-        {{#each order.products}}
+        {{#each product}}
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <div>
               <h5>{{this.name}}</h5>
@@ -48,8 +43,8 @@
         {{/each}}
       </ul>
       <div class="mt-3">
-        <h3>Total: ${{order.total_amount}}</h3>
-        <button class="btn btn-green" id="checkout">Proceed to Checkout</button>
+        {{!-- <h3>Total: ${{order.total_amount}}</h3> --}}
+        <button class="btn btn-primary" id="checkout">Proceed to Checkout</button>
       </div>
     {{else}}
       <div class="alert alert-info" role="alert">
@@ -57,58 +52,4 @@
       </div>
     {{/if}}
   </main>
-  <script src="/src/public/js/jquery-3.5.1.slim.min.js"></script> 
-  <script src="/src/public/js/popper.min.js"></script> 
-  <script src="/src/public/js/bootstrap.min.js"></script> 
-  <script>
-    $(document).ready(function() {
-      function updateCartTotal() {
-        var total = 0;
-        $('.item-total').each(function() {
-          total += parseFloat($(this).text());
-        });
-        $('#cart-total').text(total.toFixed(2));
-      }
-      $('#checkout').on('click', function() {
-        window.location.href = '/checkout';
-      });
-      $('.remove-from-cart').on('click', function() {
-        var productId = $(this).data('id');
-        // Add your remove from cart functionality here
-        console.log('Remove product with ID:', productId);
-        $(this).closest('li').remove();
-        updateCartTotal();
-      });
-      $('.increase-quantity').on('click', function() {
-        var productId = $(this).data('id');
-        var $quantitySpan = $(this).siblings('.quantity');
-        var $itemTotalSpan = $(this).closest('div').find('.item-total');
-        var $priceSpan = $(this).closest('div').find('.price');
-        var currentQuantity = parseInt($quantitySpan.text());
-        var price = parseFloat($priceSpan.text());
-        // Add your increase quantity functionality here
-        $quantitySpan.text(currentQuantity + 1);
-        $itemTotalSpan.text((price * (currentQuantity + 1)).toFixed(2));
-        console.log('Increase quantity for product with ID:', productId);
-        updateCartTotal();
-      });
-      $('.decrease-quantity').on('click', function() {
-        var productId = $(this).data('id');
-        var $quantitySpan = $(this).siblings('.quantity');
-        var $itemTotalSpan = $(this).closest('div').find('.item-total');
-        var $priceSpan = $(this).closest('div').find('.price');
-        var currentQuantity = parseInt($quantitySpan.text());
-        var price = parseFloat($priceSpan.text());
-        if (currentQuantity > 1) {
-          // Add your decrease quantity functionality here
-          $quantitySpan.text(currentQuantity - 1);
-          $itemTotalSpan.text((price * (currentQuantity - 1)).toFixed(2));
-          console.log('Decrease quantity for product with ID:', productId);
-          updateCartTotal();
-        }
-      });
-      updateCartTotal();
-    });
-  </script>
-</body>
-</html>
+  

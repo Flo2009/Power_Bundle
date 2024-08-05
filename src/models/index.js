@@ -1,19 +1,26 @@
 const Customer = require('./Customer');
 const Product = require('./Product');
+const Cart = require('./Cart');
+const CartItem = require('./CartItem');
 const Order = require('./Order');
 const OrderItem = require('./OrderItem');
 const Payment = require('./Payment');
 
-Customer.hasMany(Order, { foreignKey: 'userId' });
-Order.belongsTo(Customer, { foreignKey: 'userId' });
+Customer.hasOne(Cart, { foreignKey: 'customerId' });
+Cart.belongsTo(Customer, { foreignKey: 'customerId' });
 
-Order.hasMany(OrderItem, { foreignKey: 'orderId' });
-OrderItem.belongsTo(Order, { foreignKey: 'orderId' });
+Customer.hasMany(Order, { foreignKey: 'customerId' });
+Order.belongsTo(Customer, { foreignKey: 'customerId' });
 
-Product.hasMany(OrderItem, { foreignKey: 'productId' });
-OrderItem.belongsTo(Product, { foreignKey: 'productId' });
+Cart.belongsToMany(Product, { through: CartItem, foreignKey: 'cartId' });
+Product.belongsToMany(Cart, { through: CartItem, foreignKey: 'productId' });
 
-Order.hasMany(Payment, { foreignKey: 'orderId' });
+Order.belongsToMany(Product, { through: OrderItem, foreignKey: 'orderId' });
+Product.belongsToMany(Order, { through: OrderItem, foreignKey: 'productId' });
+
+Order.hasOne(Payment, { foreignKey: 'orderId' });
 Payment.belongsTo(Order, { foreignKey: 'orderId' });
 
-module.exports = { Customer, Product, Order, OrderItem, Payment };
+
+
+module.exports = { Customer, Product, Cart, CartItem, Order, OrderItem, Payment };
