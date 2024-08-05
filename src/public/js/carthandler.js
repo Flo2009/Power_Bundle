@@ -61,7 +61,7 @@ let cart = [];
                 alert('Error adding product to cart');
             }
         }
-
+//render the cart modal
         function displayCart() {
             const cartDiv = document.getElementById('cart');
             cartDiv.innerHTML = '';
@@ -77,7 +77,7 @@ let cart = [];
                     <p>Quantity: ${product.quantity}</p>
                     <button class="btn btn-secondary btn-sm" onclick="updateQuantity(${index}, 1)">+</button>
                     <p>Total: $${product.total}</p>
-                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index}, ${product.customerId}, ${product.id})">Remove</button>
                     `;
                 cartDiv.appendChild(productDiv);
             });
@@ -96,38 +96,50 @@ let cart = [];
     }
 
     // Function to remove items from the cart
-function removeFromCart(index) {
+function removeFromCart(index, customerId, productId) {
+    const cartDelete={
+        customerId: customerId,
+        productId: productId,
+    }
+    console.log(cartDelete);
     cart.splice(index, 1);
     displayCart();
+    removeItemFromCart(cartDelete);
     
   }
 
   // Function to update item quantity in the cart
 function updateQuantity(index, change) {
     cart[index].quantity += change;
+    const quantity = cart[index].quantity;
+    const productId = cart[index].id;
+    const customerId = cart[index].customerId;
     
     if (cart[index].quantity <= 0) {
-      removeFromCart(index);
+        removeFromCart(index, customerId, productId);
     } else {
       cart[index].total = cart[index].quantity * cart[index].price
+      
+      const cartInfo={
+        customerId: customerId,
+        productId: productId,
+        quantity: quantity,
+        }; 
       displayCart();
-    //   updateCartBackend();
+      updateCartBackend(cartInfo);
     }
   }
 
   // Function to update the cart on the backend
-async function updateCartBackend() {
-    cartTotal={
-        customerId: cart[0].customerId,
-        cart: cart
-    };
-    console.log(cartTotal);
-    const response = await fetch('/orderitems/carts', {
+async function updateCartBackend(cartInfo) {
+    
+    console.log(cartInfo);
+    const response = await fetch('/api/products/cart/update', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(cartTotal)
+      body: JSON.stringify(cartInfo)
     });
   
     if (!response.ok) {
@@ -136,5 +148,68 @@ async function updateCartBackend() {
     }
   }
   
+  const removeItemFromCart = async (cartDelete) => {
+    console.log(cartDelete);
+    const response = await fetch('/api/products/cart/remove', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cartDelete)
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+    } else {
+      console.error('Failed to remove cart item');
+    }
+  };
+
+  async function getId(productId) {
+    console.log(productId);
+      const response = await fetch('/api/products/cart', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ productId })
+      });
+
+      if (response.ok) {
+          const result = await response.json();
+          
+          if (result.success) {
+              const product = result.product;
+              // let idGet =[]
+              console.log(product);
+              
+              console.log(product.customerId);
+              let customerId = product.customerId
+              const response = await fetch('/ordersummary', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ customerId })
+            });
+      
+            if (response.ok) {
+                const result = await response.json();};
+
+          }else {
+            alert('Product not found');
+        }
+      }  
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Existing add-to-cart functionality...
+    
+      const checkoutButton = document.getElementById('checkout');
+    
+      checkoutButton.addEventListener('click', () => {
+        // getId(1);
+        // console.log(getId.customerId);
+        window.location.href = '/ordersummary';
+      });
+    });
   // Initial rendering of the cart
 displayCart();

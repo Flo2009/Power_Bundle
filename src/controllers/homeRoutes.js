@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Product, Customer, Order, OrderItem } = require('../models');
+const { Product, Customer, Cart, CartItem, Order, OrderItem } = require('../models');
+const { getCartItems } = require('./api/cartController');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -7,10 +8,7 @@ router.get('/', async (req, res) => {
     // Get all projects and JOIN with user data
     const productData = await Product.findAll({
       include: [
-        // {
-        //   model: Customer,
-        //   // attributes: ['name'],
-        // },
+       
       ],
     });
 
@@ -28,27 +26,28 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/product/:id', async (req, res) => {
+router.get('/ordersummary', withAuth, async (req, res) => {
   try {
-    const productData = await Product.findByPk(req.params.id, {
-      include: [
-        {
-          model: Customer,
-          attributes: ['name'],
-        },
-      ],
-    });
+    // const { customerId } = req.body;
+    // console.log(customerId);
+    // if (!customerId) return res.redirect('/login'); // Redirect to login if customer is not logged in
 
-    const product = productData.get({ plain: true });
+    // const cartItemsData = await getCartItems(customerId);
+    // const cartItems = cartItemsData.cartItems.map(item => item.get({ plain: true }));
 
-    res.render('product', {
-      ...product,
-      logged_in: req.session.logged_in
+    // const total = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+
+    res.render('ordersummary', {
+      // cartItems,
+      // total: total.toFixed(2),
+      // logged_in: req.session.logged_in,
+      // customer_id: req.session.customer_id
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 // Use withAuth middleware to prevent access to route
 router.get('/cart', withAuth, async (req, res) => {

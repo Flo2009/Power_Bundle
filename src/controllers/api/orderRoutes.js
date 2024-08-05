@@ -1,37 +1,22 @@
 const router = require('express').Router();
-const { Order} = require('../../models');
+const { placeOrder } = require('../api/orderController');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+const getCustomerIdFromSession = (req, res, next) => {
+  req.customerId = req.session.customerId;
+  next();
+};
+
+router.post('/orders/checkout', getCustomerIdFromSession, async (req, res) => {
+  const { customerId } = req;
+
+  if (!customerId) return res.status(401).json({ message: 'Customer not logged in' });
+
   try {
-    const newOrder = await Order.create({
-      ...req.body,
-      customer_id: req.session.customer_id,
-    });
-
-    res.status(200).json(newOrder);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    const productData = await Product.destroy({
-      where: {
-        id: req.params.id,
-        customer_id: req.session.customer_id,
-      },
-    });
-
-    if (!productData) {
-      res.status(404).json({ message: 'No product is  found!' });
-      return;
-    }
-
-    res.status(200).json(productData);
-  } catch (err) {
-    res.status(500).json(err);
+    const order = await placeOrder(customerId);
+    res.status(200).json({ message: 'Order placed successfully', order });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to place order', error: error.message });
   }
 });
 
