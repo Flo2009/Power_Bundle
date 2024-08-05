@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all projects and JOIN with customer data
     const productData = await Product.findAll({
       include: [
         // {
@@ -52,7 +52,7 @@ router.get('/product/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/cart', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    // Find the logged in customer based on the session ID
     const customerData = await Customer.findByPk(req.session.customer_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Product }],
@@ -70,7 +70,7 @@ router.get('/cart', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  // If the customer is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect('/cart');
     return;
