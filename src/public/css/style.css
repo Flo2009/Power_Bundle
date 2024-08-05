@@ -1,5 +1,7 @@
+
+
 body {
-  background-color: #d4edda; /* Light green background */
+  background-color:lightgreen; /* Light green background */
 }
 
 .text-green {
@@ -76,12 +78,14 @@ body {
   color: #333;
 }
 
-header {
-  background-color: #81c784; /* Light green background for the header */
-  color: #fff;
+.bg-green {
+  background-color: lightgreen;
+
 }
 
+
 header .nav-link {
+
   color: #1b4332 !important; /* Dark green color for nav links */
 }
 
