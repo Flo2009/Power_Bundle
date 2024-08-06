@@ -2,12 +2,16 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Customer extends Model {}
+class Customer extends Model {
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
+}
 
 Customer.init({
   id: {
     type: DataTypes.INTEGER,
-    defaultValue: DataTypes.UUIDV4,
+    // defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
     autoIncrement: true,
   },

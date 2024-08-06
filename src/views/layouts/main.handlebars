@@ -40,11 +40,16 @@
     </main>
     {{!-- {{> footer }} --}}
   </div>
-
-  <script src="/js/jquery-3.5.1.slim.min.js"></script>
-  <script src="/js/popper.min.js"></script>
+ 
+  {{!-- <script src="/js/jquery-3.5.1.slim.min.js"></script> --}}
+  {{!-- <script src="/js/popper.min.js"></script> --}}
   <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/custom.js"></script>
+  {{!-- <script src="/js/custom.js"></script> --}}
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+ 
 </body>
 
 </html>

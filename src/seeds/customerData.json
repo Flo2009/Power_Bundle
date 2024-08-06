@@ -1,31 +1,31 @@
 [
   {
-    "id": 1,
+    
     "name": "Malcom Young",
     "email": "angus@gmail.com",
-    "password": "hashedpassword1",
+    "password": "password12345",
     "address": "123 Main St, Anytown, USA"
     
   },
   {
-    "id": 2,
+    
     "name": "Jimmy Page",
     "email": "jimmy@operamail.com",
-    "password": "hashedpassword2",
+    "password": "password12345",
     "address": "123 Side St, San Antonio, USA"
   },
   {
-    "id": 3,
+    
     "name": "Keith Richards",
     "email": "keith@comcast.net",
-    "password": "hashedpassword3",
+    "password": "password12345",
     "address": "123 Beachfront Ave, Miami, USA"
   },
   {
-    "id": 4,
+    
     "name": "Ritchie Blackmore",
     "email": "ritchie@firefox.com",
-    "password": "hashedpassword4",
+    "password": "password12345",
     "address": "123 Piccadilly Circus, London Town, England"
   }
 ]

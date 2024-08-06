@@ -4,6 +4,7 @@
   <div class="container mt-5">
     <h1>Welcome to PowerBundle</h1>
     <p>PowerBundle is an e-commerce platform dedicated to providing health-conscious consumers with affordable, high-quality bundles of healthy bars and drinks. The platform aims to simplify the process of maintaining a nutritious diet by offering curated selections of products at discounted prices.</p>
+     {{!-- <p>{{customer_id}}</p> --}}
     <div class="row">
       {{#each products}}
         <div class="col-md-4">
@@ -13,7 +14,8 @@
               <h5 class="card-title">{{this.name}}</h5>
               <p class="card-text">{{this.description}}</p>
               <p class="card-text">Price: ${{this.price}}</p>
-              <button class="btn btn-primary add-to-cart" data-id="{{this.id}}">Add to Cart</button>
+              <button class="btn btn-primary add-to-cart" onclick="addToCart('{{this.id}}')" data-id="{{this.id}}">Add to Cart</button>
+             
             </div>
           </div>
         </div>
@@ -21,8 +23,49 @@
     </div>
   </div>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
+  <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+                    {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> --}}
+                        {{!-- <span aria-hidden="true">&times;</span> --}}
+                    {{!-- </button> --}}
+                </div>
+                <div class="modal-body">
+                    <div id="cart">
+                        <!-- Cart items will be displayed here -->
+                        {{!-- {{#if order.products.length}} --}}
+                          {{!-- <ul class="list-group">
+                            {{#each order.products}}
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                  <h5>{{this.name}}</h5>
+                                  <p>{{this.description}}</p>
+                                  <p>Price: ${{this.price}}</p>
+                                  <p>Quantity: {{this.order_product.quantity}}</p>
+                                </div>
+                                <button class="btn btn-danger remove-from-cart" data-id="{{this.id}}">Remove</button>
+                              </li>
+                            {{/each}}
+                          </ul>
+                          <div class="mt-3">
+                            <h3>Total: ${{order.total_amount}}</h3>
+                          </div> --}}
+                </div>
+                <div class="modal-footer">
+                    {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                    <button type="button" class="btn btn-primary" id="checkout">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  </script>
+  
+
+
+  {{!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+   <script src="/js/carthandler.js"></script>
+   <script src="/js/checkout.js"></script>
 

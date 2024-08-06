@@ -18,6 +18,8 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "jquery": "^3.7.1",
+    "jsdom": "^24.1.1",
     "multiple.js": "^0.0.1",
     "pg": "^8.11.3",
     "sequelize": "^6.3.5"

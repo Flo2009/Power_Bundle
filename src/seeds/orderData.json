@@ -1,9 +1,9 @@
 [
   {
-    "id": 1,
+    
     "customerId": 1,
     "totalAmount": 49.98,
-    "status": "completed",
+    "status": "pending",
     "trackingNumber": "1234567890"
     
   }
