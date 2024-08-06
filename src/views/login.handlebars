@@ -24,24 +24,27 @@
     </div>
   </script>
 
-  <script id="signup-template" type="text/x-handlebars-template">
-    <div class="col-md-6 mx-auto">
-      <h2 class="text-green">Sign Up</h2>
-      <form class="form signup-form">
-        <div class="form-group">
-          <label for="name-signup">Name:</label>
-          <input class="form-input" type="text" id="name-signup" />
-        </div>
-        <div class="form-group">
-          <label for="email-signup">Email:</label>
-          <input class="form-input" type="text" id="email-signup" />
-        </div>
-        <div class="form-group">
-          <label for="password-signup">Password:</label>
-          <input class="form-input" type="password" id="password-signup" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-green" type="submit">Sign Up</button>
+        <div class="col-md-6 signup-form">
+          <h3>Sign Up</h3>
+          <div class="form-group">
+            <label for="name-signup">Name</label>
+            <input type="text" class="form-control" id="name-signup" name="sign-in-name">
+          </div>
+          <div class="form-group">
+            <label for="email-signup">Email</label>
+            <input type="text" class="form-control" id="email-signup" name="sign-in-email">
+          </div>
+          <div class="form-group">
+            <label for="password-signup">Password</label>
+            <input type="password" class="form-control" id="password-signup" name="sign-in-password">
+          </div>
+          <div class="form-group">
+            <label for="address-signup">Address</label>
+            <input type="text" class="form-control" id="#customer-address" name="sign-in-address">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary signup" type="submit">signup</button>
+          </div>
         </div>
       </form>
     </div>
