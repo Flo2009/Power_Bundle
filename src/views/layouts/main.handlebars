@@ -43,6 +43,24 @@
          </ul>  
         {{/if}}
         
+         {{#if logged_in}}
+         <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/cart">Cart</a>
+              {{!-- <p>{{customer_id}}</p> --}}
+            </li>
+            <li>
+               <button class="nav-link logout"  id="logout">logout</button>
+            </li>
+         </ul>
+        {{else}}
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login/Create account </a>
+            </li>
+         </ul>  
+        {{/if}}
+        
       </div>
     </nav>
   </header>
