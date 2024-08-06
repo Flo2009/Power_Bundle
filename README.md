@@ -65,6 +65,10 @@ https://github/Flo2009
 
 supersuse81@gmail.com
 
+kaminskisofia9@gmail.com
+
+muktadir1090@gmail.com
+
 ## Tests
 
 No tests provided yet
