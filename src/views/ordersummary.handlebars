@@ -1,4 +1,15 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerBundle - Checkout</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+ 
+  
   <main class="container mt-5">
     <h1>Checkout</h1>
     <form id="checkout-form" action="/checkout" method="POST">
@@ -82,4 +93,74 @@
     </div>
   </div>
 
-   <script src="/js/order-summary"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Example order data
+      const order = {
+        products: [
+          { name: 'Energy Drink', price: 5.99 },
+          { name: 'Healthy Snack', price: 3.49 },
+          { name: 'Mix Bundle', price: 12.99 }
+        ],
+        total_amount: 22.47
+      };
+
+      // Function to render order summary
+      function renderOrderSummary(order) {
+        const orderList = document.getElementById('order-summary-list');
+        orderList.innerHTML = '';
+
+        order.products.forEach(product => {
+          const listItem = document.createElement('li');
+          listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+          listItem.innerHTML = `${product.name} <span>$${product.price.toFixed(2)}</span>`;
+          orderList.appendChild(listItem);
+        });
+
+        const totalItem = document.createElement('li');
+        totalItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+        totalItem.innerHTML = `<strong>Total</strong> <strong>$${order.total_amount.toFixed(2)}</strong>`;
+        orderList.appendChild(totalItem);
+      }
+
+      // Render order summary
+      renderOrderSummary(order);
+
+      // Form submission handler
+      document.getElementById('checkout-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Validate card details (example validation)
+        const cardNumberPattern = /^\d{1,16}$/;
+        const cardNamePattern = /^[A-Za-z\s]+$/;
+        const cvvPattern = /^\d{1,3}$/;
+
+        const cardNumber = document.getElementById('cardNumber').value;
+        const cardName = document.getElementById('cardName').value;
+        const cvv = document.getElementById('cvv').value;
+
+        if (!cardNumberPattern.test(cardNumber)) {
+          alert('Credit card number must be between 1 and 16 digits.');
+          return;
+        }
+
+        if (!cardNamePattern.test(cardName)) {
+          alert('Name on card must not be numeric.');
+          return;
+        }
+
+        if (!cvvPattern.test(cvv)) {
+          alert('CVV must be between 1 and 3 digits.');
+          return;
+        }
+
+        // Show the thank you modal if validation passes
+        $('#thankYouModal').modal('show');
+      });
+    });
+  </script>
+</body>
+</html>
