@@ -29,8 +29,8 @@ Then return to the "src" and seed the database with "node/seeds/seed.js" after t
 Once you are on the homepage you can log-in by pressing the button on the top right. You can then sign-in or log-in. Then when you are re-directed to the homepage I can choose products by adding them to the cart. The cart then shows in a modal and the quantity can be adjusted. You can then move to the checkout page.
 
 
-![Page_1](/src/public/images/Screencapture1.gif)
-![Page_2](/src/public/images/ScreenCap2.gif)
+![Page_1](/src/public/images/images/Screencapture1.gif)
+![Page_2](/src/public/images/images/ScreenCap2.gif)
 
 ## Credits
 
@@ -54,6 +54,8 @@ https://opensource.org/license/mit
 Conntect us through the email (linked provided) and see how we can collaborate
 
 https://github.com/Flo2009/Power_Bundle
+
+https://power-bundle-gh9r.onrender.com/
 
 ## Questions
 
