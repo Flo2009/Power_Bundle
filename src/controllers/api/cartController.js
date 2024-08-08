@@ -79,7 +79,6 @@ const removeCartItem = async (customerId, productId) => {
 };
 
 const getCartItems = async (customerId) => {
-  console.log("I am Here");
   try {
     const cart = await Cart.findOne({ 
       where: { customerId },
@@ -91,10 +90,10 @@ const getCartItems = async (customerId) => {
         }
       }
     });
-    console.log(cart);
-    // if (!cart) return { cartItems: [] };
-    return cart;
-    // return { cartItems: cart.cartItems };
+
+    if (!cart) return { cartItems: [] };
+
+    return { cartItems: cart.cartItems };
   } catch (error) {
     console.error('Failed to get cart items:', error);
     throw error;

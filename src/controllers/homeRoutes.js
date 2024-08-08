@@ -28,15 +28,15 @@ router.get('/', async (req, res) => {
 
 router.get('/ordersummary', withAuth, async (req, res) => {
   try {
-    const  customerId  = req.session.customer_id;
-    console.log(customerId);
-    if (!customerId) return res.redirect('/login'); // Redirect to login if customer is not logged in
+    // const { customerId } = req.body;
+    // console.log(customerId);
+    // if (!customerId) return res.redirect('/login'); // Redirect to login if customer is not logged in
 
-    const cartItemsData = await getCartItems(customerId);
-    const cartItems = cartItemsData.cartItems.map(item => item.get({ plain: true }));
+    // const cartItemsData = await getCartItems(customerId);
+    // const cartItems = cartItemsData.cartItems.map(item => item.get({ plain: true }));
 
-    const total = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-    console.log(total);
+    // const total = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+
     res.render('ordersummary', {
       // cartItems,
       // total: total.toFixed(2),
@@ -49,25 +49,25 @@ router.get('/ordersummary', withAuth, async (req, res) => {
 });
 
 
-// // Use withAuth middleware to prevent access to route
-// router.get('/cart', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const customerData = await Customer.findByPk(req.session.customer_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Product }],
-//     });
+// Use withAuth middleware to prevent access to route
+router.get('/cart', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const customerData = await Customer.findByPk(req.session.customer_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Product }],
+    });
 
-//     const customer = CustomerData.get({ plain: true });
+    const customer = CustomerData.get({ plain: true });
 
-//     res.render('cart', {
-//       ...customer,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('cart', {
+      ...customer,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -78,32 +78,6 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
-});
-
-
-
-router.get('/cart', async (req, res) => {
-  console.log("I am Here");
-  try {
-    const  customerId  = 3;
-    const  cartId  = 2;
-    const cart = await Cart.findAll({ 
-      where: { customerId },
-      include: {model: CartItem,
-        include: {
-          model: Product,
-          attributes: ['id', 'name', 'price', 'description']
-        }
-       }
-    });
-    console.log(cart);
-    // if (!cart) return { cartItems: [] };
-    res.status(200).json(cart);
-    // return { cartItems: cart.cartItems };
-  } catch (error) {
-    console.error('Failed to get cart items:', error);
-    throw error;
-  }
 });
 
 module.exports = router;
