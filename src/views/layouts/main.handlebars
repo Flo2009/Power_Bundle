@@ -6,9 +6,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PowerBundle - {{title}}</title>
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
 
 
   <title>PowerBundle - Checkout</title>
@@ -21,7 +18,7 @@
 
 </head>
 
-<body>
+<body class="text-green">
   <header class="bg-light py-3">
     <nav class="container d-flex flex-wrap justify-content-between">
       <ul class="nav">
@@ -46,11 +43,7 @@
               {{!-- <p>{{customer_id}}</p> --}}
             </li>
             <li>
-
-               <button class="nav-link logout"  id="logout">logout</button>
-
                <button class="nav-link logout"  id="logout">Log Out</button>
-
             </li>
          </ul>
         {{else}}
@@ -66,6 +59,7 @@
   </header>
 
 
+  
   <div class="d-flex flex-column justify-content-between min-vh-100">
     {{!-- {{> header }} --}}
     <main class="container mt-4">
@@ -82,6 +76,10 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+ 
+</body>
+
+</html>
  
 </body>
 
