@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Customer = require('./Customer');
+// const Customer = require('./Customer');
 
 class Order extends Model {}
 
@@ -15,7 +15,7 @@ Order.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Customer,
+      model: 'customer',
       key: 'id'
     }
   },
@@ -43,7 +43,7 @@ Order.init({
   }
 });
 
-Order.belongsTo(Customer, { foreignKey: 'customerId' });
+// Order.belongsTo(Customer, { foreignKey: 'customerId' });
 
 function generateTrackingNumber() {
     return 'TN' + Math.random().toString(36).substr(2, 9).toUpperCase();

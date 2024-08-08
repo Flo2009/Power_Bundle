@@ -21,6 +21,12 @@ Product.belongsToMany(Order, { through: OrderItem, foreignKey: 'productId' });
 Order.hasOne(Payment, { foreignKey: 'orderId' });
 Payment.belongsTo(Order, { foreignKey: 'orderId' });
 
+CartItem.belongsTo(Cart, { foreignKey: 'cartId' });
+CartItem.belongsTo(Product, { foreignKey: 'productId' });
 
+Payment.belongsTo(Order, { foreignKey: 'orderId' });
+
+OrderItem.belongsTo(Order, { foreignKey: 'orderId' });
+OrderItem.belongsTo(Product, { foreignKey: 'productId' });
 
 module.exports = { Customer, Product, Cart, CartItem, Order, OrderItem, Payment };

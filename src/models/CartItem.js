@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Cart = require('./Cart');
-const Product = require('./Product');
+// const Cart = require('./Cart');
+// const Product = require('./Product');
 
 class CartItem extends Model {}
 
@@ -15,7 +15,7 @@ CartItem.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Cart,
+      model: 'cart',
       key: 'id'
     }
   },
@@ -23,7 +23,7 @@ CartItem.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Product,
+      model: 'product',
       key: 'id'
     }
   },
@@ -41,7 +41,7 @@ CartItem.init({
   modelName: 'cartItem'
 });
 
-CartItem.belongsTo(Cart, { foreignKey: 'cartId' });
-CartItem.belongsTo(Product, { foreignKey: 'productId' });
+// CartItem.belongsTo(Cart, { foreignKey: 'cartId' });
+// CartItem.belongsTo(Product, { foreignKey: 'productId' });
 
 module.exports = CartItem;

@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Order = require('./Order');
+// const Order = require('./Order');
 
 class Payment extends Model {}
 
@@ -15,7 +15,7 @@ Payment.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: Order,
+      model: 'order',
       key: 'id'
     }
   },
@@ -36,6 +36,6 @@ Payment.init({
   modelName: 'payment'
 });
 
-Payment.belongsTo(Order, { foreignKey: 'orderId' });
+// Payment.belongsTo(Order, { foreignKey: 'orderId' });
 
 module.exports = Payment;

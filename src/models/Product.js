@@ -32,7 +32,7 @@ Product.init({
   }
 }, {
   sequelize,
-  modelName: 'Product'
+  modelName: 'product'
 });
 
 module.exports = Product;
